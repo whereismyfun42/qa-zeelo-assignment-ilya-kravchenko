@@ -1,0 +1,108 @@
+Feature: Login
+
+  # Test Case 1: Successful Login with Valid Credentials
+  Scenario: Successful login with valid credentials
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user enters a valid "email" and "password"
+    And the user clicks on the "Continue" button
+    Then the user should be redirected to the My Rides page
+
+  # Test Case 2: Failed Login with Invalid Credentials
+  Scenario: Failed login with invalid credentials
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user enters an invalid "email" and "password"
+    And the user clicks on the "Continue" button
+    Then the user should see an error message "Invalid email or password"
+    And the user should remain on the "Log in or sign up" page
+
+  # Test Case 3: Login with Empty Email Field
+  Scenario: Login attempt with empty email field
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user leaves the email field empty
+    And the user enters a valid "password"
+    And the user clicks on the "Continue" button
+    Then the user should see an error message "Email is required"
+    And the user should remain on the "Log in or sign up" page
+
+  # Test Case 4: Login with Empty Password Field
+  Scenario: Login attempt with empty password field
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user enters a valid "email"
+    And the user leaves the password field empty
+    And the user clicks on the "Continue" button
+    Then the user should see an error message "Password is required"
+    And the user should remain on the "Log in or sign up" page
+
+  # Test Case 5: Login with Empty Email and Password Fields
+  Scenario: Login attempt with empty email and password fields
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user leaves the email and password fields empty
+    And the user clicks on the "Continue" button
+    Then the user should see error messages "Email is required" and "Password is required"
+    And the user should remain on the "Log in or sign up" page
+
+
+  # Test Case 6: Login with Facebook
+  Scenario: Login using Facebook
+    Given the user is on the login popup
+    When the user clicks on the "Continue with Facebook" button
+    Then the user should be redirected to Facebook login page
+    When the user enters valid Facebook credentials
+    And the user authorizes the app
+    Then the user should be redirected to the My Rides page
+    And the user should see a welcome message
+
+  # Test Case 7: Login with Google
+  Scenario: Login using Google
+    Given the user is on the login popup
+    When the user clicks on the "Continue with Google" button
+    Then the user should be redirected to Google login page
+    When the user enters valid Google credentials
+    And the user authorizes the app
+    Then the user should be redirected to the My Rides page
+    And the user should see a welcome message
+
+  # Test Case 8: Login with Apple
+  Scenario: Login using Apple
+    Given the user is on the login popup
+    When the user clicks on the "Continue with Apple" button
+    Then the user should be redirected to Apple login page
+    When the user enters valid Apple credentials
+    And the user authorizes the app
+    Then the user should be redirected to the My Rides page
+    And the user should see a welcome message
+
+  # Test Case 9: Successful Continue with Email
+  Scenario: Successful continue with email
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user enters a valid "email"
+    And the user clicks on the "Continue" button
+    Then the user should be prompted to enter a password or sign up if not already registered
+
+  # Test Case 10: Continue with Email - Invalid Email Format
+  Scenario: Continue with email using invalid email format
+    Given the user is on the login popup
+    When the user clicks on the "Continue with email" button
+    And the user is on the "Log in or sign up" page
+    And the user enters an invalid email format "invalid-email"
+    And the user clicks on the "Continue" button
+    Then the user should see an error message "Please enter a valid email address"
+    And the user should remain on the "Log in or sign up" page
+
+  # Test Case 11: Navigate Back from Continue with Email
+  Scenario: Navigate back from continue with email
+    Given the user is on the "Log in or sign up" page
+    When the user clicks on the "Back" button
+    Then the user should be redirected back to the login popup
